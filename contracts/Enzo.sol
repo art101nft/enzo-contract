@@ -26,7 +26,7 @@ pragma solidity ^0.8.13;
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-import {IERC721A, ERC721A} from "erc721a/contracts/ERC721A.sol";
+import {ERC721A} from "erc721a/contracts/ERC721A.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {SafeMath} from "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
@@ -124,27 +124,29 @@ contract Enzo is ERC721A, DefaultOperatorFilterer, ERC2981, Ownable {
         return string(abi.encodePacked(baseURI, Strings.toString(tokenId)));
     }
 
-    function transferFrom(address from, address to, uint256 tokenId) 
-        public 
-        override(IERC721A, ERC721A)
-        onlyAllowedOperator(from) 
+    function transferFrom(address from, address to, uint256 tokenId)
+        public
+        payable
+        override(ERC721A)
+        onlyAllowedOperator(from)
     {
         super.transferFrom(from, to, tokenId);
     }
 
+
     function setApprovalForAll(address operator, bool approved) 
         public 
-        override(IERC721A, ERC721A)
+        override(ERC721A)
         onlyAllowedOperatorApproval(operator) 
     {
         super.setApprovalForAll(operator, approved);
     }
 
-    function approve(address operator, uint256 tokenId) 
-        public 
-        virtual
-        override(IERC721A, ERC721A)
-        onlyAllowedOperatorApproval(operator) 
+    function approve(address operator, uint256 tokenId)
+        public
+        payable
+        override(ERC721A)
+        onlyAllowedOperatorApproval(operator)
     {
         super.approve(operator, tokenId);
     }
@@ -153,7 +155,7 @@ contract Enzo is ERC721A, DefaultOperatorFilterer, ERC2981, Ownable {
         public
         view
         virtual
-        override(IERC721A, ERC721A, ERC2981)
+        override(ERC721A, ERC2981)
         returns (bool)
     {
         // Supports the following `interfaceId`s:
