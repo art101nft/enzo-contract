@@ -1,0 +1,35 @@
+{
+  "name": "enzo-contract",
+  "version": "1.0.0",
+  "description": "Smart contract base template.",
+  "main": "index.js",
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/art101nft/enzo-contract.git"
+  },
+  "author": "lza_menace@patrn.me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/art101nft/enzo-contract/issues"
+  },
+  "homepage": "https://github.com/art101nft/enzo-contract",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0",
+    "@openzeppelin/test-helpers": "^0.5.15",
+    "chai": "^4.3.6",
+    "dotenv": "^10.0.0",
+    "erc721a": "^4.2.3",
+    "eth-gas-reporter": "^0.2.24",
+    "operator-filter-registry": "^1.4.1",
+    "truffle": "^5.4.19",
+    "truffle-hdwallet-provider": "^1.0.17",
+    "truffle-plugin-verify": "^0.5.33",
+    "web3": "^1.6.1"
+  },
+  "engines": {
+    "node": "^12.18.x"
+  }
+}
